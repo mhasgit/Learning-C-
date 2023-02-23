@@ -105,7 +105,7 @@ int main()
                 cout << "Input data: " << info << endl;
 
                 node *temp;
-                temp = (node *)malloc(sizeof(node));
+                temp = new node;
                 temp->data = info;
                 temp->next = NULL;
                 head = temp;
@@ -194,7 +194,7 @@ int main()
                 break;
             }
             node *temp;
-            temp = (node *)malloc(sizeof(node));
+            temp = new node;
             temp = head;
             head = temp->next;
             free(temp);
