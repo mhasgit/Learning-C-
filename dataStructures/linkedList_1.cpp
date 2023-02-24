@@ -193,8 +193,7 @@ int main()
                 counter--;
                 break;
             }
-            node *temp;
-            temp = new node;
+            node *temp = new node();
             temp = head;
             head = temp->next;
             free(temp);

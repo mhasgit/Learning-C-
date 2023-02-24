@@ -17,26 +17,6 @@ void insertInLinkedList(Node **head, int data)
     (*head) = newNode;
 }
 
-/*Node* insertAtLast(Node **firstNode, int data)
-{
-    Node *newNode = new Node();
-    newNode->data = data;
-    newNode->next = NULL;
-
-    if ((*firstNode) == NULL)
-    {
-        (*firstNode) = newNode;
-    }
-    Node *lastNode = (*firstNode);
-    while (lastNode->next != NULL)
-    {
-        lastNode = lastNode->next;
-    }
-    lastNode->next = newNode;
-    return lastNode;
-}
-*/
-
 void insertAtLast(Node **head, int data)
 {
     if ((*head) == NULL)
@@ -62,149 +42,155 @@ void insertAtLast(Node **head, int data)
     }
 }
 
-    void inserAtSpecificNode(Node * head, int data, int position)
+void inserAtSpecificNode(Node *head, int data, int position)
+{
+    Node *newNode = new Node();
+    newNode->data = data;
+    if (position == 0)
     {
-        Node *newNode = new Node();
-        newNode->data = data;
-        if (position == 0)
-        {
-            newNode->next = head;
-        }
-        else
-        {
-        }
+        newNode->next = head;
     }
-
-    void traverseLinkedList(Node * head)
+    else
     {
-        while (head != NULL)
-        {
-            cout << head->data << " ";
-            head = head->next;
-        }
     }
+}
 
-    void deleteInLinkedList(Node * firstNode, int data)
+void traverseLinkedList(Node *head)
+{
+    while (head != NULL)
     {
-        if (firstNode == NULL)
-        {
-            cout << "The linked list is empty";
-        }
-        else if (firstNode->next == NULL)
-        {
-            firstNode = NULL;
-            cout << "The first node of the linked list is deleted" << endl;
-            cout << "The linked list is empty" << endl;
-        }
-        Node *tempNode = new Node();
-        tempNode = firstNode;
-        firstNode = tempNode->next;
-        free(tempNode);
+        cout << head->data << " ";
+        head = head->next;
+    }
+}
+
+void deleteInLinkedList(Node *head)
+{
+    if (head == NULL)
+    {
+        cout << "The linked list is empty";
+    }
+    else if (head->next == NULL)
+    {
+        head = NULL;
         cout << "The first node of the linked list is deleted" << endl;
+        cout << "The linked list is empty" << endl;
     }
+    Node *tempNode = new Node();
+    tempNode = head->next;
+    //head = tempNode->next;
+    head->next = tempNode->next;
+    delete tempNode;
+    //free(tempNode);
+    cout << "The first node of the linked list is deleted" << endl;
+}
 
-    void deleteAtLast(Node * head)
+void deleteAtLast(Node *head)
+{
+    if (head == NULL)
     {
-        if (head == NULL)
-        {
-            cout << "The linked list is empty";
-        }
-        else if (head->next == NULL)
-        {
-            head = NULL;
-            cout << "The last node of the linked list is deleted" << endl;
-            cout << "The linked list is empty" << endl;
-        }
-
-        Node *temp1 = new Node();
-        temp1 = head;
-
-        Node *oldTemp = new Node();
-        while (temp1->next != NULL)
-        {
-            oldTemp = temp1;
-            temp1 = temp1->next;
-        }
-        oldTemp->next = NULL;
-
-        free(temp1);
+        cout << "The linked list is empty";
+    }
+    else if (head->next == NULL)
+    {
+        head = NULL;
         cout << "The last node of the linked list is deleted" << endl;
+        cout << "The linked list is empty" << endl;
     }
 
-    void deleteAtSpecificNode(Node * head)
+    Node *temp1 = new Node();
+    temp1 = head;
+
+    Node *oldTemp = new Node();
+    while (temp1->next != NULL)
     {
-        int nodeNumber, counter;
-        if (head == NULL)
-        {
-            cout << "The linked list is empty";
-        }
-        else if (head->next == NULL)
-        {
-            head = NULL;
-            cout << "The first node of the linked list is deleted" << endl;
-            cout << "The linked list is empty" << endl;
-        }
-        cout << "Enter any node number: ";
-        cin >> nodeNumber;
-        if (nodeNumber > counter)
-        {
-            cout << "No such node exist";
-        }
-
-        Node *temp1 = new Node();
-        temp1 = head;
-
-        Node *oldTemp = new Node();
         oldTemp = temp1;
-        if (nodeNumber == 1)
-        {
-            head = temp1->next;
-            free(temp1);
-            counter--;
-            cout << nodeNumber << "Node of the linked list is deleted" << endl;
-        }
+        temp1 = temp1->next;
+    }
+    oldTemp->next = NULL;
+
+    free(temp1);
+    cout << "The last node of the linked list is deleted" << endl;
+}
+
+void deleteAtSpecificNode(Node *head)
+{
+    int nodeNumber, counter;
+    if (head == NULL)
+    {
+        cout << "The linked list is empty";
+    }
+    else if (head->next == NULL)
+    {
+        head = NULL;
+        cout << "The first node of the linked list is deleted" << endl;
+        cout << "The linked list is empty" << endl;
+    }
+    cout << "Enter any node number: ";
+    cin >> nodeNumber;
+    if (nodeNumber > counter)
+    {
+        cout << "No such node exist";
     }
 
-    void sortLinkedList(Node * head)
+    Node *temp1 = new Node();
+    temp1 = head;
+
+    Node *oldTemp = new Node();
+    oldTemp = temp1;
+    if (nodeNumber == 1)
     {
-        Node *firstNode = new Node();
+        head = temp1->next;
+        free(temp1);
+        counter--;
+        cout << nodeNumber << "Node of the linked list is deleted" << endl;
+    }
+}
 
-        Node *tempSecondNode = new Node();
+void sortLinkedList(Node *head)
+{
+    Node *firstNode = new Node();
 
-        int temp = 0;
+    Node *tempSecondNode = new Node();
 
-        for (firstNode = head; firstNode != NULL; firstNode = firstNode->next)
+    int temp = 0;
+
+    for (firstNode = head; firstNode != NULL; firstNode = firstNode->next)
+    {
+        for (tempSecondNode = firstNode->next; tempSecondNode != NULL; tempSecondNode = tempSecondNode->next)
         {
-            for (tempSecondNode = firstNode->next; tempSecondNode != NULL; tempSecondNode = tempSecondNode->next)
+            if (firstNode->data > tempSecondNode->data)
             {
-                if (firstNode->data > tempSecondNode->data)
-                {
-                    temp = firstNode->data;
-                    firstNode->data = tempSecondNode->data;
-                    tempSecondNode->data = temp;
-                }
+                temp = firstNode->data;
+                firstNode->data = tempSecondNode->data;
+                tempSecondNode->data = temp;
             }
         }
     }
+}
 
-    int main()
-    {
-        Node *newNode = NULL;
+int main()
+{
+    Node *newNode = NULL;
 
-        insertInLinkedList(&newNode, 10);
-        insertInLinkedList(&newNode, 20);
-        insertInLinkedList(&newNode, 30);
-        insertInLinkedList(&newNode, 40);
-        insertInLinkedList(&newNode, 50);
-        insertInLinkedList(&newNode, 60);
-        traverseLinkedList(newNode);
-        
-        cout << "\n\n";
-        insertAtLast(&newNode, 70);
-        traverseLinkedList(newNode);
+    insertInLinkedList(&newNode, 10);
+    insertInLinkedList(&newNode, 20);
+    insertInLinkedList(&newNode, 30);
+    insertInLinkedList(&newNode, 40);
+    insertInLinkedList(&newNode, 50);
+    insertInLinkedList(&newNode, 60);
+    traverseLinkedList(newNode);
 
-        cout << "\n\n";
-        sortLinkedList(newNode);
-        traverseLinkedList(newNode);
-        return 0;
-    }
+    cout << "\n\n";
+    insertAtLast(&newNode, 70);
+    traverseLinkedList(newNode);
+
+    cout << "\n\n";
+    sortLinkedList(newNode);
+    traverseLinkedList(newNode);
+
+    cout << "\n\n";
+    deleteInLinkedList(newNode);
+    traverseLinkedList(newNode);
+    return 0;
+}
