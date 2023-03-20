@@ -45,7 +45,7 @@ int main()
 
             //node *temp;
             //temp = (node *)malloc(sizeof(node));
-            node *temp = new node;
+            node *temp = new node();
             temp->data = info;
             temp->next = head;
             head = temp;

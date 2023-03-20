@@ -10,7 +10,7 @@ struct Node
 
 Node* createNode(int data)
 {
-    Node* newNode = new Node;
+    Node* newNode = new Node();
     newNode->data = data;
     newNode->leftSide = NULL;
     newNode->rightSide = NULL;
@@ -21,7 +21,7 @@ Node* createNode(int data)
 Node* insertIntoTree(Node* root, int data)
 {
     Node* temp = createNode(data);
-    Node *temp1 = new Node;
+    Node *temp1 = new Node();
     temp1 = root;
 
     if (root == NULL)
@@ -62,7 +62,7 @@ Node* insertIntoTree(Node* root, int data)
 void search(Node* root, int data)
 {
     int depth = 0;
-    Node *temp = new Node;
+    Node *temp = new Node();
     temp = root;
 
     while (temp != NULL)
@@ -92,15 +92,15 @@ int main()
     char ch;
     int n, arr[20] = {45, 56, 77, 47, 88, 98, 18, 27, 35, 81, 35, 67, 32, 95, 100};
 
-    Node* root = new Node;
+    Node* root = new Node();
     root = NULL;
 
     for (int i = 0; i < 15; i++)
     {
         root = insertIntoTree(root, arr[i]);
     }
-    search(root, n);
     up:
+    search(root, n);
     cout << "\nEnter the element to be searched: ";
     cin >> n;
 
